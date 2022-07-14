@@ -112,23 +112,19 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.x = 0;
 camera.position.y = 0;
-camera.position.z = 0.15;
+camera.position.z = 0.3;
 scene.add(camera);
 
 //Controls
-const controls = new THREE.OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.enableZoom = false;
-controls.keys = {
-  LEFT: "ArrowLeft", //left arrow
-  UP: "ArrowUp", // up arrow
-  RIGHT: "ArrowRight", // right arrow
-  BOTTOM: "ArrowDown", // down arrow
-};
-
-const rtParameters = {
-  stencilBuffer: true,
-};
+// const controls = new THREE.OrbitControls(camera, canvas);
+// controls.enableDamping = true;
+// controls.enableZoom = false;
+// controls.keys = {
+//   LEFT: "ArrowLeft", //left arrow
+//   UP: "ArrowUp", // up arrow
+//   RIGHT: "ArrowRight", // right arrow
+//   BOTTOM: "ArrowDown", // down arrow
+// };
 
 /**
  * Renderer
@@ -144,14 +140,14 @@ renderer.setPixelRatio(window.devicePixelRatio);
 /// Shader //
 /// Shader //
 /// Shader //
-let composer = new THREE.EffectComposer(
-  renderer,
-  new THREE.WebGLRenderTarget(sizes.width, sizes.height, rtParameters)
-);
+// let composer = new THREE.EffectComposer(
+//   renderer,
+//   new THREE.WebGLRenderTarget(sizes.width, sizes.height, rtParameters)
+// );
 
-const renderPass = new THREE.RenderPass(scene, camera);
-composer.addPass(renderPass);
-renderPass.renderToScreen = true;
+// const renderPass = new THREE.RenderPass(scene, camera);
+// composer.addPass(renderPass);
+// renderPass.renderToScreen = true;
 
 // const effect1 = new THREE.ShaderPass(THREE.DotScreenShader);
 
@@ -232,12 +228,12 @@ const tick = () => {
 
   //if ( mixer1 ) mixer1.update( deltaTime);
 
-  targetX = mouseX * 0.001;
-  targetY = mouseY * 0.001;
+  targetX = mouseX * 0.0002;
+  targetY = mouseY * 0.0002;
 
   //Update objects
-  if (obj) obj.rotation.y += 0.05 * (targetX - obj.rotation.y);
-  if (obj) obj.rotation.x += 0.05 * (targetY - obj.rotation.x);
+  if (obj) obj.rotation.y += 0.1 * (targetX - obj.rotation.y);
+  if (obj) obj.rotation.x += 0.1 * (targetY - obj.rotation.x);
 
   // if (obj2) obj2.rotation.y += 0.005 * (targetX - obj2.rotation.y);
   // if (obj2) obj2.rotation.x += 0.005 * (targetY - obj2.rotation.x);
@@ -247,10 +243,10 @@ const tick = () => {
 
   // Update Orbital Controls
 
-  composer.render();
+  // composer.render();
   // Update Orbital Controls
-  controls.update();
-  // renderer.render(scene, camera);
+  //controls.update();
+  renderer.render(scene, camera);
 
   // Call tick again on the next frame
 };
