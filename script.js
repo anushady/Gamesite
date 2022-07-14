@@ -8,16 +8,35 @@ const scene = new THREE.Scene();
 
 var loader = new THREE.GLTFLoader();
 var obj;
+var obj2;
 loader.load(
   // resource URL
-  "animation.glb",
+  "grid 2.glb",
   // called when the resource is loaded
   function (gltf) {
     obj = gltf.scene;
+    //const obj2 = gltf.scene.clone();
     scene.add(obj);
-    obj.scale.set(0.1, 0.1, 0.1);
+    obj.scale.set(3, 3, 3);
+    // obj2.scale.set(3, 3, 3);
+    obj.position.set(0.2, 0.2, 0);
+    //scene.add(obj2);
   }
 );
+// loader.load(
+//   // resource URL
+//   "grid 1.glb",
+//   // called when the resource is loaded
+//   function (gltf) {
+//     obj2 = gltf.scene;
+//     //const obj2 = gltf.scene.clone();
+//     scene.add(obj2);
+//     obj2.scale.set(3, 3, 3);
+//     // obj2.scale.set(3, 3, 3);
+//     obj2.position.set(0, 0, -0.4);
+//     //scene.add(obj2);
+//   }
+// );
 
 // Lights
 const light = new THREE.AmbientLight(0xffffff, 0.2); // soft white light
@@ -86,14 +105,14 @@ window.addEventListener("resize", () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(
-  55,
+  75,
   sizes.width / sizes.height,
   0.1,
   1000
 );
 camera.position.x = 0;
 camera.position.y = 0;
-camera.position.z = 4.3;
+camera.position.z = 0.15;
 scene.add(camera);
 
 //Controls
@@ -147,27 +166,27 @@ renderPass.renderToScreen = true;
 // composer.addPass(effectVignette);
 // effectVignette.renderToScreen = true;
 
-const glitchPass = new THREE.GlitchPass(0);
-composer.addPass(glitchPass);
-glitchPass.renderToScreen = true;
+// const glitchPass = new THREE.GlitchPass(0);
+// composer.addPass(glitchPass);
+// glitchPass.renderToScreen = true;
 
-const params = {
-  exposure: 0.4,
-  bloomStrength: 1.5,
-  bloomThreshold: 0,
-  bloomRadius: 2,
-};
-const bloomPass = new THREE.UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight),
-  1.5,
-  0.4,
-  0.85
-);
-bloomPass.threshold = params.bloomThreshold;
-bloomPass.strength = params.bloomStrength;
-bloomPass.radius = params.bloomRadius;
-composer.addPass(bloomPass);
-composer.renderToScreen = true;
+// const params = {
+//   exposure: 0.4,
+//   bloomStrength: 1.5,
+//   bloomThreshold: 0,
+//   bloomRadius: 2,
+// };
+// const bloomPass = new THREE.UnrealBloomPass(
+//   new THREE.Vector2(window.innerWidth, window.innerHeight),
+//   1.5,
+//   0.4,
+//   0.85
+// );
+// bloomPass.threshold = params.bloomThreshold;
+// bloomPass.strength = params.bloomStrength;
+// bloomPass.radius = params.bloomRadius;
+// composer.addPass(bloomPass);
+// composer.renderToScreen = true;
 
 // const effectDotScree = new THREE.DotScreenPass(
 //   new THREE.Vector2(0, 0),
@@ -217,9 +236,12 @@ const tick = () => {
   targetY = mouseY * 0.001;
 
   //Update objects
-  if (obj) obj.rotation.y += 0.005 * (targetX - obj.rotation.y);
-  if (obj) obj.rotation.x += 0.005 * (targetY - obj.rotation.x);
-  //if (obj) obj.rotation.z += -0.05 * (targetY - obj.rotation.x);
+  if (obj) obj.rotation.y += 0.05 * (targetX - obj.rotation.y);
+  if (obj) obj.rotation.x += 0.05 * (targetY - obj.rotation.x);
+
+  // if (obj2) obj2.rotation.y += 0.005 * (targetX - obj2.rotation.y);
+  // if (obj2) obj2.rotation.x += 0.005 * (targetY - obj2.rotation.x);
+  // //if (obj) obj.rotation.z += -0.05 * (targetY - obj.rotation.x);
 
   //renderer.clear();
 
