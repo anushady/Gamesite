@@ -19,7 +19,7 @@ loader.load(
     scene.add(obj);
     obj.scale.set(3, 3, 3);
     // obj2.scale.set(3, 3, 3);
-    obj.position.set(0.2, 0.2, 0);
+    obj.position.set(0.2, 0.2, 0.3);
     //scene.add(obj2);
   }
 );
@@ -233,7 +233,7 @@ const tick = () => {
 
   //Update objects
   if (obj) obj.rotation.y += 0.1 * (targetX - obj.rotation.y);
-  if (obj) obj.rotation.x += 0.1 * (targetY - obj.rotation.x);
+  if (obj) obj.rotation.x += 0.1 * (3 * targetY - obj.rotation.x);
 
   // if (obj2) obj2.rotation.y += 0.005 * (targetX - obj2.rotation.y);
   // if (obj2) obj2.rotation.x += 0.005 * (targetY - obj2.rotation.x);
