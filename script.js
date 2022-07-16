@@ -38,7 +38,7 @@ loader.load(
 //   }
 // );
 var loader2 = new THREE.TextureLoader();
-var texture = loader2.load("Vigilancer.png");
+var texture = loader2.load("Vigilancerlogo.png");
 
 geometry = new THREE.PlaneBufferGeometry();
 material = new THREE.MeshBasicMaterial({
@@ -48,7 +48,7 @@ material = new THREE.MeshBasicMaterial({
 });
 
 var loader3 = new THREE.TextureLoader();
-var texture2 = loader3.load("Vigilancer.png");
+var texture2 = loader3.load("Vigilancerlogo.png");
 
 geometry2 = new THREE.PlaneBufferGeometry();
 material2 = new THREE.MeshBasicMaterial({
@@ -61,10 +61,14 @@ const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
 const mesh2 = new THREE.Mesh(geometry2, material2);
 scene.add(mesh2);
-mesh.scale.set(0.4, 0.1, 0.2);
+const mesh3 = new THREE.Mesh(geometry2, material2);
+scene.add(mesh3);
+mesh.scale.set(0.65, 0.21, 0.1);
 mesh.position.set(0, 0, -0.1);
-mesh2.scale.set(0.4, 0.1, 0.2);
+mesh2.scale.set(0.65, 0.21, 0.1);
 mesh2.position.set(0, 0, -0.11);
+mesh3.scale.set(0.65, 0.21, 0.1);
+mesh3.position.set(0, 0, -0.12);
 // Lights
 const light = new THREE.AmbientLight(0xffffff, 0.2); // soft white light
 scene.add(light);
@@ -386,11 +390,14 @@ const tick = () => {
   if (grid2) grid2.rotation.y += 0.1 * (targetX - grid2.rotation.y);
   if (grid2) grid2.rotation.x += 0.1 * (3 * targetY - grid2.rotation.x);
 
-  if (mesh) mesh.rotation.y += 0.4 * (targetX - mesh.rotation.y);
-  if (mesh) mesh.rotation.x += 0.4 * (3 * targetY - mesh.rotation.x);
+  if (mesh) mesh.rotation.y += 0.45 * (targetX - mesh.rotation.y);
+  if (mesh) mesh.rotation.x += 0.45 * (3 * targetY - mesh.rotation.x);
 
-  if (mesh2) mesh2.rotation.y += 0.4 * (targetX - mesh2.rotation.y);
-  if (mesh2) mesh2.rotation.x += 0.4 * (3 * targetY - mesh2.rotation.x);
+  if (mesh2) mesh2.rotation.y += 0.45 * (targetX - mesh2.rotation.y);
+  if (mesh2) mesh2.rotation.x += 0.45 * (3 * targetY - mesh2.rotation.x);
+
+  if (mesh3) mesh3.rotation.y += 0.45 * (targetX - mesh3.rotation.y);
+  if (mesh3) mesh3.rotation.x += 0.45 * (3 * targetY - mesh3.rotation.x);
 
   // if (obj2) obj2.rotation.y += 0.005 * (targetX - obj2.rotation.y);
   // if (obj2) obj2.rotation.x += 0.005 * (targetY - obj2.rotation.x);
