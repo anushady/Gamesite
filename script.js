@@ -16,7 +16,7 @@ loader.load(
   function (gltf) {
     obj = gltf.scene;
     //const obj2 = gltf.scene.clone();
-    scene.add(obj);
+    //scene.add(obj);
     obj.scale.set(3, 3, 3);
     // obj2.scale.set(3, 3, 3);
     obj.position.set(0.2, 0.2, 0.3);
@@ -37,7 +37,20 @@ loader.load(
 //     //scene.add(obj2);
 //   }
 // );
+var loader2 = new THREE.TextureLoader();
+var texture = loader2.load("Vigilancer.png");
 
+geometry = new THREE.PlaneBufferGeometry();
+material = new THREE.MeshBasicMaterial({
+  map: texture,
+  opacity: 1,
+  transparent: true,
+});
+
+const mesh = new THREE.Mesh(geometry, material);
+scene.add(mesh);
+mesh.scale.set(0.5, 0.15, 0.2);
+mesh.position.set(0, 0, -0.1);
 // Lights
 const light = new THREE.AmbientLight(0xffffff, 0.2); // soft white light
 scene.add(light);
@@ -77,6 +90,123 @@ directionalLight8.position.set(-1, 1, 1);
 const directionalLight9 = new THREE.DirectionalLight(0xffffff, 0.2);
 scene.add(directionalLight9);
 directionalLight9.position.set(0, 0, 1);
+
+var division = 30;
+var limit = 100;
+var grid = new THREE.GridHelper(limit * 2, division, "#69CCDF", "#69CCDF");
+var grid2 = new THREE.GridHelper(limit * 2, division, "#69CCDF", "#69CCDF");
+
+var moveable = [];
+for (let i = 0; i <= division; i++) {
+  moveable.push(1, 1, 0, 0); // move horizontal lines only (1 - point is moveable)
+}
+grid.geometry.addAttribute(
+  "moveable",
+  new THREE.BufferAttribute(new Uint8Array(moveable), 1)
+);
+grid.material = new THREE.ShaderMaterial({
+  uniforms: {
+    time: {
+      value: 0,
+    },
+    limits: {
+      value: new THREE.Vector2(-limit, limit),
+    },
+    speed: {
+      value: 5,
+    },
+  },
+  vertexShader: `
+    uniform float time;
+    uniform vec2 limits;
+    uniform float speed;
+
+    attribute float moveable;
+
+    varying vec3 vColor;
+
+    void main() {
+      vColor = color;
+      float limLen = limits.y - limits.x;
+      vec3 pos = position;
+
+      if (floor(moveable + 0.5) > 0.5){
+        // if a point has "moveable" attribute = 1
+        float dist = speed * time;
+        float currPos = mod((pos.z + dist) - limits.x, limLen) + limits.x;
+        pos.z = currPos;
+      }
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.0);
+    }
+  `,
+  fragmentShader: `
+    varying vec3 vColor;
+
+    void main() {
+      gl_FragColor = vec4(vColor, 1);
+    }
+  `,
+  vertexColors: THREE.VertexColors,
+});
+grid2.geometry.addAttribute(
+  "moveable",
+  new THREE.BufferAttribute(new Uint8Array(moveable), 1)
+);
+grid2.material = new THREE.ShaderMaterial({
+  uniforms: {
+    time: {
+      value: 0,
+    },
+    limits: {
+      value: new THREE.Vector2(-limit, limit),
+    },
+    speed: {
+      value: 5,
+    },
+  },
+  vertexShader: `
+    uniform float time;
+    uniform vec2 limits;
+    uniform float speed;
+
+    attribute float moveable;
+
+    varying vec3 vColor;
+
+    void main() {
+      vColor = color;
+      float limLen = limits.y - limits.x;
+      vec3 pos = position;
+
+      if (floor(moveable + 0.5) > 0.5){
+        // if a point has "moveable" attribute = 1
+        float dist = speed * time;
+        float currPos = mod((pos.z + dist) - limits.x, limLen) + limits.x;
+        pos.z = currPos;
+      }
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos,1.0);
+    }
+  `,
+  fragmentShader: `
+    varying vec3 vColor;
+
+    void main() {
+      gl_FragColor = vec4(vColor, 1);
+    }
+  `,
+  vertexColors: THREE.VertexColors,
+});
+grid.position.set(0, -8, 0);
+grid.rotation.set(0, 0, 0);
+grid.scale.set(0.9, 1, 1);
+scene.add(grid);
+grid2.position.set(0, 8, 0);
+grid2.rotation.set(0, 0, 0);
+grid2.scale.set(0.9, 1, 1);
+scene.add(grid2);
+
 /**
 /**
  * Sizes
@@ -221,11 +351,14 @@ function onDocumentMouseMove(event) {
 //  window.addEventListener('scroll', updateOnScroll)
 
 const clock = new THREE.Clock();
+var time = 0;
 
 const tick = () => {
   window.requestAnimationFrame(tick);
-  const deltaTime = clock.getDelta();
 
+  time -= clock.getDelta();
+  grid.material.uniforms.time.value = time;
+  grid2.material.uniforms.time.value = time;
   //if ( mixer1 ) mixer1.update( deltaTime);
 
   targetX = mouseX * 0.0002;
@@ -234,6 +367,13 @@ const tick = () => {
   //Update objects
   if (obj) obj.rotation.y += 0.1 * (targetX - obj.rotation.y);
   if (obj) obj.rotation.x += 0.1 * (3 * targetY - obj.rotation.x);
+  if (grid) grid.rotation.y += 0.1 * (targetX - grid.rotation.y);
+  if (grid) grid.rotation.x += 0.1 * (3 * targetY - grid.rotation.x);
+  if (grid2) grid2.rotation.y += 0.1 * (targetX - grid2.rotation.y);
+  if (grid2) grid2.rotation.x += 0.1 * (3 * targetY - grid2.rotation.x);
+
+  if (mesh) mesh.rotation.y += 0.4 * (targetX - mesh.rotation.y);
+  if (mesh) mesh.rotation.x += 0.4 * (3 * targetY - mesh.rotation.x);
 
   // if (obj2) obj2.rotation.y += 0.005 * (targetX - obj2.rotation.y);
   // if (obj2) obj2.rotation.x += 0.005 * (targetY - obj2.rotation.x);
