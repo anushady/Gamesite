@@ -37,6 +37,22 @@ loader.load(
 //     //scene.add(obj2);
 //   }
 // );
+var loaderimg = new THREE.TextureLoader();
+var textureimg = loaderimg.load("person.png");
+
+geometryimg = new THREE.PlaneBufferGeometry();
+materialimg = new THREE.MeshBasicMaterial({
+  map: textureimg,
+  opacity: 1,
+  transparent: true,
+});
+const img = new THREE.Mesh(geometryimg, materialimg);
+scene.add(img);
+img.scale.set(0.3, 0.5, 0.3);
+img.position.set(0.3, 0, -15.5);
+
+///////////////////////////
+
 var loader2 = new THREE.TextureLoader();
 var texture = loader2.load("Vigilancerlogo.png");
 
@@ -393,6 +409,9 @@ const tick = () => {
   if (mesh) mesh.rotation.y += 0.45 * (targetX - mesh.rotation.y);
   if (mesh) mesh.rotation.x += 0.45 * (3 * targetY - mesh.rotation.x);
 
+  if (img) img.rotation.y += 0.45 * (2 * targetX - img.rotation.y);
+  if (img) img.rotation.x += 0.45 * (3 * targetY - img.rotation.x);
+
   if (mesh2) mesh2.rotation.y += 0.45 * (targetX - mesh2.rotation.y);
   if (mesh2) mesh2.rotation.x += 0.45 * (3 * targetY - mesh2.rotation.x);
 
@@ -416,3 +435,18 @@ const tick = () => {
 };
 
 tick();
+
+// functions
+gsap.registerPlugin(ScrollTrigger);
+var section1 = document.getElementById("section1");
+var section2 = document.getElementById("section2");
+
+var click = document.getElementById("click");
+var tl = gsap.timeline();
+click.addEventListener("click", () => {
+  tl.to(camera.position, { z: -15 })
+    .to(grid.position, { z: 10 }, 0)
+    .to(grid2.position, { z: 10 }, 0);
+  console.log("a");
+  tl.to("#section2", { opacity: 1 }, 0);
+});
