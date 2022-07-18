@@ -43,7 +43,7 @@ var textureimg = loaderimg.load("person.png");
 geometryimg = new THREE.PlaneBufferGeometry();
 materialimg = new THREE.MeshBasicMaterial({
   map: textureimg,
-  opacity: 1,
+  opacity: 0,
   transparent: true,
 });
 const img = new THREE.Mesh(geometryimg, materialimg);
@@ -401,16 +401,24 @@ const tick = () => {
   //Update objects
   if (obj) obj.rotation.y += 0.1 * (targetX - obj.rotation.y);
   if (obj) obj.rotation.x += 0.1 * (3 * targetY - obj.rotation.x);
-  if (grid) grid.rotation.y += 0.1 * (targetX - grid.rotation.y);
-  if (grid) grid.rotation.x += 0.1 * (3 * targetY - grid.rotation.x);
-  if (grid2) grid2.rotation.y += 0.1 * (targetX - grid2.rotation.y);
-  if (grid2) grid2.rotation.x += 0.1 * (3 * targetY - grid2.rotation.x);
+
+  if (camera.position.z < -10) {
+    if (grid2) grid2.rotation.y += 0.1 * (targetX - grid2.rotation.y);
+    if (grid2) grid2.rotation.x += 0.1 * (1 * targetY - grid2.rotation.x);
+    if (grid) grid.rotation.y += 0.1 * (targetX - grid.rotation.y);
+    if (grid) grid.rotation.x += 0.1 * (1 * targetY - grid.rotation.x);
+  } else {
+    if (grid) grid.rotation.y += 0.1 * (targetX - grid.rotation.y);
+    if (grid) grid.rotation.x += 0.1 * (3 * targetY - grid.rotation.x);
+    if (grid2) grid2.rotation.y += 0.1 * (targetX - grid2.rotation.y);
+    if (grid2) grid2.rotation.x += 0.1 * (3 * targetY - grid2.rotation.x);
+  }
 
   if (mesh) mesh.rotation.y += 0.45 * (targetX - mesh.rotation.y);
   if (mesh) mesh.rotation.x += 0.45 * (3 * targetY - mesh.rotation.x);
 
-  if (img) img.rotation.y += 0.45 * (2 * targetX - img.rotation.y);
-  if (img) img.rotation.x += 0.45 * (3 * targetY - img.rotation.x);
+  if (img) img.rotation.y += 0.1 * (targetX - img.rotation.y);
+  if (img) img.rotation.x += 0.45 * (1 * targetY - img.rotation.x);
 
   if (mesh2) mesh2.rotation.y += 0.45 * (targetX - mesh2.rotation.y);
   if (mesh2) mesh2.rotation.x += 0.45 * (3 * targetY - mesh2.rotation.x);
@@ -444,9 +452,11 @@ var section2 = document.getElementById("section2");
 var click = document.getElementById("click");
 var tl = gsap.timeline();
 click.addEventListener("click", () => {
-  tl.to(camera.position, { z: -15 })
-    .to(grid.position, { z: 10 }, 0)
-    .to(grid2.position, { z: 10 }, 0);
+  tl.to(camera.position, { z: -15 });
+  // .to(grid.position, { z: 15 }, 0)
+  // .to(grid2.position, { z: 15 }, 0);
   console.log("a");
   tl.to("#section2", { opacity: 1 }, 0);
+  tl.to(materialimg, { opacity: 1 }, 0);
+  // tick();
 });
