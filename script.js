@@ -49,7 +49,7 @@ materialimg = new THREE.MeshBasicMaterial({
 const img = new THREE.Mesh(geometryimg, materialimg);
 scene.add(img);
 img.scale.set(0.3, 0.5, 0.3);
-img.position.set(0.3, 0, -15.5);
+img.position.set(0.18, 0, -15.5);
 
 ///////////////////////////
 
@@ -448,15 +448,33 @@ tick();
 gsap.registerPlugin(ScrollTrigger);
 var section1 = document.getElementById("section1");
 var section2 = document.getElementById("section2");
-
 var click = document.getElementById("click");
 var tl = gsap.timeline();
-click.addEventListener("click", () => {
-  tl.to(camera.position, { z: -15 });
-  // .to(grid.position, { z: 15 }, 0)
-  // .to(grid2.position, { z: 15 }, 0);
-  console.log("a");
-  tl.to("#section2", { opacity: 1 }, 0);
-  tl.to(materialimg, { opacity: 1 }, 0);
-  // tick();
-});
+document.addEventListener(
+  "keypress",
+  (event) => {
+    var name = event.key;
+    var code = event.code;
+    if (name === "Enter") {
+      // Alert the key name and key code on keydown
+      tl.to(camera.position, { z: -15 });
+      // .to(grid.position, { z: 15 }, 0)
+      // .to(grid2.position, { z: 15 }, 0);
+      console.log("a");
+      tl.to("#section2", { opacity: 1 }, 0);
+      tl.to("#click", { opacity: 0 }, 0);
+      tl.to(materialimg, { opacity: 1 }, 0);
+    }
+  },
+  false
+);
+
+// click.addEventListener("click", () => {
+//   tl.to(camera.position, { z: -15 });
+//   // .to(grid.position, { z: 15 }, 0)
+//   // .to(grid2.position, { z: 15 }, 0);
+//   console.log("a");
+//   tl.to("#section2", { opacity: 1 }, 0);
+//   tl.to(materialimg, { opacity: 1 }, 0);
+//   // tick();
+// });
