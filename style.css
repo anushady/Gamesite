@@ -4,12 +4,50 @@
 }
 html,
 body {
-  height: 100vh;
+ 
   background: black;
 }
-  .webgl {
-  position: absolute;
+.webgl {
+  position: fixed;
   top: 0;
   left: 0;
-  outline: none;
+
+}
+#click{
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, 200%);
+  z-index: 1;
+  cursor: pointer;
+  padding: 10px 40px;
+}
+#section1 {
+  position: absolute;
+ 
+  color: white;
+  width: 100vw;
+  height: 100vh;
+}
+#section2 {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20vw;
+  opacity: 0;
+}
+.left p{
+  width: 30vw;
+  font-size: 20px;
+}
+.left h1{
+  font-size: 50px;
+}
+#sect1cont{
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
 }
