@@ -17,10 +17,12 @@ body {
   position: absolute;
   top: 50vh;
   left: 50vw;
-  transform: translate(-50%, 200%);
+  transform: translate(-38%, 200%);
   z-index: 1;
   cursor: pointer;
-  padding: 10px 40px;
+  font-size: 40px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:rgb(213, 255, 255);
 }
 #section1 {
   position: absolute;
@@ -36,11 +38,11 @@ body {
   color: white;
   display: flex;
   align-items: center;
-  padding: 0 20vw;
+  padding: 0 27vw;
   opacity: 0;
 }
 .left p{
-  width: 30vw;
+  width: 25vw;
   font-size: 20px;
 }
 .left h1{
