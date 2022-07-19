@@ -49,8 +49,10 @@ materialimg = new THREE.MeshBasicMaterial({
 const img = new THREE.Mesh(geometryimg, materialimg);
 scene.add(img);
 img.scale.set(0.3, 0.5, 0.3);
-img.position.set(0.18, 0, -15.5);
+img.position.set(0.32, 0, -15.5);
 
+///////////////////////////
+///////////////////////////
 ///////////////////////////
 
 var loader2 = new THREE.TextureLoader();
@@ -86,7 +88,7 @@ mesh2.position.set(0, 0, -0.11);
 mesh3.scale.set(0.65, 0.21, 0.1);
 mesh3.position.set(0, 0, -0.12);
 // Lights
-const light = new THREE.AmbientLight(0xffffff, 0.2); // soft white light
+const light = new THREE.AmbientLight(0xffffff, 0.25); // soft white light
 scene.add(light);
 
 const directionalLight = new THREE.DirectionalLight(0xffffff, 0.3);
@@ -417,7 +419,7 @@ const tick = () => {
   if (mesh) mesh.rotation.y += 0.45 * (targetX - mesh.rotation.y);
   if (mesh) mesh.rotation.x += 0.45 * (3 * targetY - mesh.rotation.x);
 
-  if (img) img.rotation.y += 0.1 * (targetX - img.rotation.y);
+  if (img) img.rotation.y += 0.1 * (4 * targetX - img.rotation.y);
   if (img) img.rotation.x += 0.45 * (1 * targetY - img.rotation.x);
 
   if (mesh2) mesh2.rotation.y += 0.45 * (targetX - mesh2.rotation.y);
@@ -457,7 +459,7 @@ document.addEventListener(
     var code = event.code;
     if (name === "Enter") {
       // Alert the key name and key code on keydown
-      tl.to(camera.position, { z: -15 });
+      tl.to(camera.position, { x: 0.18, z: -15 });
       // .to(grid.position, { z: 15 }, 0)
       // .to(grid2.position, { z: 15 }, 0);
       console.log("a");
