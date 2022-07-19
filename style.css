@@ -19,11 +19,12 @@ body {
 }
 #click{
   position: absolute;
-  top: 50vh;
+  top: 80vh;
   left: 50vw;
-  transform: translate(-30%, 200%);
+  transform: translate(-45%, -50%);
   z-index: 1;
   font-size: 35px;
+  font-weight: 100;
   font-family: 'Share Tech Mono', monospace;
   color:rgb(213, 255, 255);
   animation:blinkingText 1s infinite;
