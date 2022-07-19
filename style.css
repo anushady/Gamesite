@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +8,7 @@
 html,
 body {
  background: black;
+ overflow: hidden;
 }
 
 .webgl {
@@ -18,12 +21,20 @@ body {
   position: absolute;
   top: 50vh;
   left: 50vw;
-  transform: translate(-38%, 200%);
+  transform: translate(-35%, 200%);
   z-index: 1;
-  cursor: pointer;
-  font-size: 40px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 35px;
+  font-family: 'Share Tech Mono', monospace;
   color:rgb(213, 255, 255);
+  animation:blinkingText 1s infinite;
+}
+
+@keyframes blinkingText{
+  0%{     color: rgb(114, 137, 141);    }
+  49%{    color: rgb(212, 248, 255); }
+
+  99%{    color:transparent;  }
+  100%{   color: rgb(122, 151, 163);    }
 }
 #section1 {
   position: absolute;
