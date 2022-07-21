@@ -446,6 +446,12 @@ const tick = () => {
 
 tick();
 
+const animzoommusic = document.getElementById("zoom");
+const buttonpressmusic = document.getElementById("buttonpress");
+const entermusic = document.getElementById("enter");
+const imgchangemusic = document.getElementById("imgchange");
+const bgmusic = document.getElementById("bgmusic");
+
 // functions
 gsap.registerPlugin(ScrollTrigger);
 var section1 = document.getElementById("section1");
@@ -466,6 +472,7 @@ document.addEventListener(
       tl.to("#section2", { opacity: 1 }, 0);
       tl.to("#click", { opacity: 0 }, 0);
       tl.to(materialimg, { opacity: 1 }, 0);
+      entermusic.play();
     }
   },
   false
