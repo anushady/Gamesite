@@ -419,7 +419,7 @@ const tick = () => {
   if (mesh) mesh.rotation.y += 0.45 * (targetX - mesh.rotation.y);
   if (mesh) mesh.rotation.x += 0.45 * (3 * targetY - mesh.rotation.x);
 
-  if (img) img.rotation.y += 0.1 * (4 * targetX - img.rotation.y);
+  if (img) img.rotation.y += 0.1 * (1.5 * targetX - img.rotation.y);
   if (img) img.rotation.x += 0.45 * (1 * targetY - img.rotation.x);
 
   if (mesh2) mesh2.rotation.y += 0.45 * (targetX - mesh2.rotation.y);
