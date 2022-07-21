@@ -100,3 +100,34 @@ body {
   width: 50px;
   z-index: 2;
 }
+
+#videofullpage{
+  position: fixed;
+  overflow-y: hidden;
+  overscroll-behavior: contain;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+z-index: 178;
+  background: black;
+  width: 100vw;
+  height: 100vh;
+
+}
+#videofullpage iframe{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+}
+#videofullpage img{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 3vw;
+  right: 5vw;
+  cursor: pointer;
+}
