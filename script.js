@@ -451,6 +451,7 @@ const buttonpressmusic = document.getElementById("buttonpress");
 const entermusic = document.getElementById("enter");
 const imgchangemusic = document.getElementById("imgchange");
 const bgmusic = document.getElementById("bgmusic");
+const iframe = document.getElementById("iframe");
 
 // functions
 gsap.registerPlugin(ScrollTrigger);
@@ -568,3 +569,11 @@ arrowleft4.addEventListener(
   },
   false
 );
+
+var c = document.getElementById("videofullpage");
+var d = document.getElementById("xbutton");
+d.addEventListener("click", but3fun);
+function but3fun() {
+  bgmusic.play();
+  c.remove();
+}
