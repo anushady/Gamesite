@@ -49,7 +49,7 @@ materialimg = new THREE.MeshBasicMaterial({
 const img = new THREE.Mesh(geometryimg, materialimg);
 scene.add(img);
 img.scale.set(0.3, 0.5, 0.3);
-img.position.set(0.32, 0, -15.5);
+img.position.set(0.4, 0, -15.5);
 
 ///////////////////////////
 ///////////////////////////
@@ -464,6 +464,7 @@ document.addEventListener(
     var name = event.key;
     var code = event.code;
     if (name === "Enter") {
+      entermusic.play();
       // Alert the key name and key code on keydown
       tl.to(camera.position, { x: 0.18, z: -15 });
       // .to(grid.position, { z: 15 }, 0)
@@ -472,18 +473,98 @@ document.addEventListener(
       tl.to("#section2", { opacity: 1 }, 0);
       tl.to("#click", { opacity: 0 }, 0);
       tl.to(materialimg, { opacity: 1 }, 0);
-      entermusic.play();
     }
   },
   false
 );
 
-// click.addEventListener("click", () => {
-//   tl.to(camera.position, { z: -15 });
-//   // .to(grid.position, { z: 15 }, 0)
-//   // .to(grid2.position, { z: 15 }, 0);
-//   console.log("a");
-//   tl.to("#section2", { opacity: 1 }, 0);
-//   tl.to(materialimg, { opacity: 1 }, 0);
-//   // tick();
-// });
+const arrowleft2 = document.getElementById("arrowleft2");
+const arrowright2 = document.getElementById("arrowright2");
+const arrowleft3 = document.getElementById("arrowleft3");
+const arrowright3 = document.getElementById("arrowright3");
+const arrowleft4 = document.getElementById("arrowleft4");
+const arrowright4 = document.getElementById("arrowright4");
+
+var tl2 = gsap.timeline();
+arrowright2.addEventListener(
+  "click",
+  (e) => {
+    gsap.to("#section2", { opacity: 0 }, 0);
+    gsap.to("#section3", { opacity: 1 }, 0);
+    buttonpressmusic.play();
+    console.log("right2");
+    e.preventDefault();
+  },
+  false
+);
+
+var tl2l = gsap.timeline();
+
+arrowleft2.addEventListener(
+  "click",
+  (e) => {
+    buttonpressmusic.play();
+    gsap.to("#section2", { opacity: 0 }, 0);
+    gsap.to("#section4", { opacity: 1 }, 0);
+
+    console.log("left2");
+    e.preventDefault();
+  },
+  false
+);
+
+var tl3 = gsap.timeline();
+arrowright3.addEventListener(
+  "click",
+  (e) => {
+    buttonpressmusic.play();
+    gsap.to("#section3", { opacity: 0 }, 0);
+    gsap.to("#section4", { opacity: 1 }, 0);
+
+    console.log("right3");
+    e.preventDefault();
+  },
+  false
+);
+
+var tl3l = gsap.timeline();
+arrowleft3.addEventListener(
+  "click",
+  (e) => {
+    buttonpressmusic.play();
+    gsap.to("#section3", { opacity: 0 }, 0);
+    gsap.to("#section2", { opacity: 1 }, 0);
+
+    console.log("left3");
+    e.preventDefault();
+  },
+  false
+);
+
+var tl4 = gsap.timeline();
+arrowright4.addEventListener(
+  "click",
+  (e) => {
+    buttonpressmusic.play();
+    gsap.to("#section4", { opacity: 0 }, 0);
+    gsap.to("#section2", { opacity: 1 }, 0);
+
+    console.log("right4");
+    e.preventDefault();
+  },
+  false
+);
+
+var tl4l = gsap.timeline();
+arrowleft4.addEventListener(
+  "click",
+  (e) => {
+    buttonpressmusic.play();
+    gsap.to("#section4", { opacity: 0 }, 0);
+    gsap.to("#section3", { opacity: 1 }, 0);
+
+    console.log("left4");
+    e.preventDefault();
+  },
+  false
+);
