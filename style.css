@@ -8,7 +8,7 @@
 html,
 body {
  background: black;
- overflow: hidden;
+ /* overflow: hidden; */
 }
 
 .webgl {
@@ -17,6 +17,54 @@ body {
   left: 0;
 
 }
+
+/* Navbar */
+/* Navbar */
+/* Navbar */
+
+#section1 ul{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  padding: 40px 100px;
+  z-index: 3;
+
+}
+#section1 ul li{
+  list-style: none;
+  
+}
+#section1 ul li img{
+  width: 200px;
+  cursor: pointer;
+}
+
+/* yt vids */
+/* yt vids */
+/* yt vids */
+#yt-vids{
+  position: relative;
+  display: none;
+}
+.yt-vid{
+  position: relative;
+  z-index: 2;
+  background: rgba(0,0,0,0.5);
+  width: 100vw;
+  height: 100vh;
+  /* display: none; */
+}
+.yt-vid iframe{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 #click{
   position: absolute;
   top: 80vh;
@@ -44,6 +92,9 @@ body {
   width: 100vw;
   height: 100vh;
 }
+#section2cont{
+  display: none;
+}
 #section2 {
   position: absolute;
   width: 100vw;
@@ -52,7 +103,7 @@ body {
   display: flex;
   align-items: center;
   padding: 0 27vw;
-  opacity: 0;
+  /* opacity: 0; */
 }
 #section3 {
   position: absolute;
@@ -95,6 +146,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 1;
 }
+
 .arrowcont img{
   cursor: pointer;
   width: 50px;
@@ -113,8 +165,8 @@ body {
   background: rgba(0,0,0,0.5);
   width: 100vw;
   height: 100vh;
-
 }
+
 #videofullpage iframe{
   position: absolute;
   top: 50%;
@@ -123,6 +175,7 @@ body {
   width: 80%;
   height: 80%;
 }
+
 #videofullpage img{
   position: absolute;
   width: 30px;
