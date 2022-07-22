@@ -452,7 +452,7 @@ const entermusic = document.getElementById("enter");
 const imgchangemusic = document.getElementById("imgchange");
 const bgmusic = document.getElementById("bgmusic");
 const iframe = document.getElementById("iframe");
-
+const ytvids = document.getElementById("yt-vids");
 // functions
 gsap.registerPlugin(ScrollTrigger);
 var section1 = document.getElementById("section1");
@@ -571,9 +571,36 @@ arrowleft4.addEventListener(
 );
 
 var c = document.getElementById("videofullpage");
-var d = document.getElementById("xbutton");
-d.addEventListener("click", but3fun);
-function but3fun() {
-  bgmusic.play();
-  c.remove();
-}
+// var d = document.getElementById("xbutton");
+// d.addEventListener("click", but3fun);
+// function but3fun() {
+//   bgmusic.play();
+//   c.remove();
+// }
+
+///// top buttons ////
+///// top buttons ////
+var section2 = document.getElementById("section2");
+var section2cont = document.getElementById("section2cont");
+var a1a = document.getElementById("a1a");
+var a2a = document.getElementById("a2a");
+var a3a = document.getElementById("a3a");
+var a4a = document.getElementById("a4a");
+
+a1a.addEventListener("click", (e) => {
+  ytvids.style.display = "none";
+  entermusic.play();
+  tl.to(camera.position, { x: 0.18, z: -15 });
+  console.log("a");
+  // tl.to("#section2", { opacity: 1 }, 0);
+  section2cont.style.display = "block";
+  tl.to("#click", { opacity: 0 }, 0);
+  tl.to(materialimg, { opacity: 1 }, 0);
+  e.preventDefault();
+});
+
+a2a.addEventListener("click", () => {
+  ytvids.style.display = "block";
+  section2cont.style.display = "none";
+  console.log("yt");
+});
