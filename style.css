@@ -29,20 +29,27 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  /* width: 45%; */
   padding: 40px 100px;
   z-index: 3;
 
 }
 #section1 ul li{
   list-style: none;
-  
+  padding: 0 10px;
 }
 #section1 ul li img{
   width: 200px;
   cursor: pointer;
 }
-
+#a4a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  cursor: pointer;
+  padding: 40px 100px;
+}
 /* yt vids */
 /* yt vids */
 /* yt vids */
